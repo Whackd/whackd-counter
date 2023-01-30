@@ -21,6 +21,13 @@ the count is by iterating the transactions.
 @snowkidind
 
 
+## Tips on running the tests
+
+- copy and modify .env.example to a file called .env
+- node install
+- to run the tests, use the commands below from the project directory
+
+
 ## Test 1 - normal operation
 
   In this test normal operation is proven accurate because the only contract calls 
