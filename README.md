@@ -20,6 +20,9 @@ the count is by iterating the transactions.
 
 @snowkidind
 
+Send me goodies 
+
+![0xEBE40BB6FAa9AC01B2eda5c3917Bc3Bb8Bb76437](tipaddress.png)
 
 ## Tips on running the tests
 
