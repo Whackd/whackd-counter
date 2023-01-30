@@ -127,6 +127,6 @@ here, notice subsequent calls this way also get whackd
 Owner Bal: 199000 Receiver Bal: 899100 count: 999
 Only when a normal transfer function is called does the counter reset to zero
 Owner Bal: 198000 Receiver Bal: 899100 count: 0
-since the counter was reset, subsequent calls to transferFrom operate as expected
+since the counter was reset, subsequent calls to transferFrom operate as expected, except the counter is not incremented
 Owner Bal: 197000 Receiver Bal: 900000 count: 0
 ```

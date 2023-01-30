@@ -78,7 +78,7 @@ const run = async () => {
   await transfer()
   await metrics()
 
-  console.log('since the counter was reset, subsequent calls to transferFrom operate as expected')
+  console.log('since the counter was reset, subsequent calls to transferFrom operate as expected, except the counter is not incremented')
   await transferFrom()
   await metrics()
 }
