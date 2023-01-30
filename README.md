@@ -20,6 +20,17 @@ the count is by iterating the transactions.
 
 @snowkidind
 
+
+## Test 1 - normal operation
+
+  In this test normal operation is proven accurate because the only contract calls 
+  were to transfer which was implemented correctly.
+
+  there were some modifications to the contract:
+  - made the "random" variable public so you can observe it
+  - minted an initial supply of 12M to owner on init
+
+
 `npx hardhat run --network hardhat scripts/1_normal_operation.js`
 
 ```
@@ -42,6 +53,13 @@ Owner Bal: 201000 Receiver Bal: 899100 count: 999
 The final transferrrrrr:
 Owner Bal: 200000 Receiver Bal: 899100 count: 0
 ```
+
+
+## Test 2: Bug 1 
+
+  In this test bug 1 is illustrated in action. 
+  Bug 1 does not increment the random number when transferFrom is called.
+
 
 `npx hardhat run --network hardhat scripts/2_bug_1.js`
 
@@ -76,6 +94,13 @@ Owner Bal: 1180000 Receiver Bal: 18000 count: 10
 Only when calling transfer does the counter increment
 Owner Bal: 1179000 Receiver Bal: 18900 count: 11
 ```
+
+
+## Test 3: Bug 2
+
+  In this test bug 2 is illustrated in action. 
+  Bug 2 does not reset the random number when transferFrom is called.
+
 
 `npx hardhat run --network hardhat scripts/3_bug_2.js`
 
