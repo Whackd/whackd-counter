@@ -1,22 +1,21 @@
 # WHACKD token contract issues
 
-The WHACKD contract has two "bugs" in it causing the burn transaction to be 
-more random than just 1 out of every 1000 transactions. The counter only increments 
-when the "transfer" function is called and not when the "transferFrom" function is called.
+The WHACKD contract has two "bugs" in it causing the burn transaction to be more random than just 1 out of every 1000 transactions. The counter only increments when the "transfer" function is called and not when the "transferFrom" function is called.
 
-There is a separate bug that this causes where if the counter is 999 ALL subsequent
-calls to "transferFrom" are 100% burned until a normal "transfer" call resets the counter.
+There is a separate bug that this causes where if the counter is 999 ALL subsequent calls to "transferFrom" are 100% burned until a normal "transfer" call resets the counter.
 
-In order to determine the exact number of the "random" variable, you would need to 
-observe the contract calls to "transfer", and ignore all other transactions. Then, you 
-would need to observe what type of contract call the 1000th call was 
-(in this case 1000 is 999) and if it was a "transferFrom" call, you would have to reset 
-your counter to zero only on the next "transfer" call was made on chain.
+In order to determine the exact number of the "random" variable, you would need to observe the contract calls to "transfer", and ignore all other transactions. Then, you would need to observe what type of contract call the 1000th call was (in this case 1000 is 999) and if it was a "transferFrom" call, you would have to reset your counter to zero only on the next "transfer" call was made on chain.
 
-technically, to implement something to detect the state of the count, you could sync 
-the transaction history with etherscan and then decode the method using a package 
-like https://github.com/miguelmota/ethereum-input-data-decoder and then determine where 
-the count is by iterating the transactions.
+Another way to discover the count is by getting the storage for the token contract and reading it, alas this does not tell you the type of transaction on the random[999]th call:
+
+```
+    const contractAddress = "0xCF8335727B776d190f9D15a54E6B9B9348439eEE"
+    const storage = Number(await provider.getStorageAt(contractAddress, 6))
+```
+
+technically, to implement something to detect the state of the count, and decode the burned transaction data, you could sync the transaction history with etherscan and then decode the method call using a package like https://github.com/miguelmota/ethereum-input-data-decoder and then determine wherethe count is by iterating the transactions.
+
+
 
 @snowkidind
 

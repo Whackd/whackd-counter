@@ -42,6 +42,8 @@ const run = async () => {
     const [balance, balancer] = await Promise.all([a, b])
     const counter = await contract.random()
     console.log('Owner Bal: ' + weiToDisplay(balance, 18) + ' Receiver Bal: ' + weiToDisplay(balancer, 18) + ' count: ' + counter)
+    // const storage = Number(await ethers.provider.getStorageAt(contractAddress, 6))
+    // console.log(storage) // this works
   }
   await metrics()
 
