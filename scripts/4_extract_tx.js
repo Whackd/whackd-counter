@@ -68,23 +68,23 @@ const main = async () => {
   const discover5 = '0xe66b31678d6c16e9ebf358268a790b763c133750'
   const discover6 = '0xe213012a73550BfCa9928d54f3609E4a3C1961b5' // apparently an old uni pool
 
-  // const filter1 = await etherscan.tokenContractFilter(discover1, whackd, 0, lastBlock)
-  // await addDb(filter1, miscFile)
+  const filter1 = await etherscan.tokenContractFilter(discover1, whackd, 0, lastBlock)
+  await addDb(filter1, miscFile)
 
-  // const filter2 = await etherscan.tokenContractFilter(discover2, whackd, 0, lastBlock)
-  // await addDb(filter2, miscFile)
+  const filter2 = await etherscan.tokenContractFilter(discover2, whackd, 0, lastBlock)
+  await addDb(filter2, miscFile)
 
-  // const filter3 = await etherscan.tokenContractFilter(discover3, whackd, 0, lastBlock)
-  // await addDb(filter3, miscFile)
+  const filter3 = await etherscan.tokenContractFilter(discover3, whackd, 0, lastBlock)
+  await addDb(filter3, miscFile)
 
-  // const filter4 = await etherscan.tokenContractFilter(discover4, whackd, 0, lastBlock)
-  // await addDb(filter4, miscFile)
+  const filter4 = await etherscan.tokenContractFilter(discover4, whackd, 0, lastBlock)
+  await addDb(filter4, miscFile)
 
-  // const filter5 = await etherscan.tokenContractFilter(discover5, whackd, 0, lastBlock)
-  // await addDb(filter5, miscFile)
+  const filter5 = await etherscan.tokenContractFilter(discover5, whackd, 0, lastBlock)
+  await addDb(filter5, miscFile)
 
-  // const filter6 = await etherscan.tokenContractFilter(discover6, whackd, 0, lastBlock)
-  // await addDb(filter6, miscFile)
+  const filter6 = await etherscan.tokenContractFilter(discover6, whackd, 0, lastBlock)
+  await addDb(filter6, miscFile)
 
   console.log('Process completed.')
 
