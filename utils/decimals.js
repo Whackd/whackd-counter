@@ -27,7 +27,7 @@ module.exports = {
     if (typeof value !== 'string') {
       value = String(_value)
     }
-    const d = bigD(value)
+    const d = module.exports.bigD(value)
     return d.round(decimals, bigDecimal.RoundingModes.FLOOR).getValue()
   },
 
@@ -123,7 +123,23 @@ module.exports = {
     } else {
       return 'Error'
     }
+  },
+  
+  noExponents: (exponent) => {
+    var data = String(exponent).split(/[eE]/);
+    if (data.length === 1) return data[0];
+    var z = '', sign = this < 0 ? '-' : '',
+      str = data[0].replace('.', ''),
+      mag = Number(data[1]) + 1;
+    if (mag < 0) {
+      z = sign + '0.';
+      while (mag++) z += '0';
+      return z + str.replace(/^\-/, '');
+    }
+    mag -= str.length;
+    while (mag--) z += '0';
+    return str + z;
   }
 
-};
+}
 
