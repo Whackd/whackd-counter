@@ -9,6 +9,7 @@ const { v4 } = require("uuid")
 const abi = require('../utils/abi.json')
 const jsondb = require('../utils/jsondb.js')
 const decimals = require('../utils/decimals.js')
+const { map } = require('../utils/etherscan.js')
 const { displayToWei, d } = decimals
 const decoder = new InputDataDecoder(abi)
 
@@ -45,7 +46,7 @@ const run = async () => {
 
   const whackdContract = new ethers.Contract(whackd, abi, provider)
   let allAddresses = []
-  if (process.env.DEBUG && fs.existsSync(__dirname + '/../data/' + whackd + '_eoa.json')) {
+  if (process.env.DEBUG === 'true' && fs.existsSync(__dirname + '/../data/' + whackd + '_eoa.json')) {
     allAddresses = JSON.parse(await fs.readFileSync(__dirname + '/../data/' + whackd + '_eoa.json', 'utf8'))
   } else {
 
@@ -151,32 +152,6 @@ const run = async () => {
   // Create the balances report 
   await fs.writeFileSync(__dirname + '/../data/' + whackd + '_balances.json', JSON.stringify(holders, null, 4))
   console.log('Operation is complete.')
-}
-
-const map = (tx) => {
-  const res = {
-    positionId: null,
-    blockchain: tx[1],
-    hash: tx[2],
-    type: tx[3],
-    blockNumber: tx[4],
-    timeStamp: tx[5],
-    nonce: tx[6],
-    from: tx[7],
-    to: tx[8],
-    contractAddress: tx[9],
-    value: tx[10],
-    tokenName: tx[11],
-    tokenSymbol: tx[12],
-    tokenDecimal: tx[13],
-    gas: tx[14],
-    gasPrice: tx[15],
-    gasUsed: tx[16],
-    input: tx[17],
-    confirmations: tx[18],
-    isError: tx[19]
-  }
-  return res
 }
 
   ; (async () => {

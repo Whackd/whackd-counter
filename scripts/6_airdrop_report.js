@@ -7,6 +7,7 @@ const abi = require('../utils/abi.json')
 const decoder = new InputDataDecoder(abi)
 const jsondb = require('../utils/jsondb.js')
 const decimals = require('../utils/decimals.js')
+const { map } = require('../utils/etherscan.js')
 const { bigD, weiToDisplay, displayToWei, d } = decimals
 
 const provider = new ethers.providers.JsonRpcProvider(process.env.MAINNET_NODE, 1)
@@ -115,32 +116,6 @@ const run = async () => {
   console.log('Of these, there are ' + + uninited.length + ' address with zero eth which are unclaimed:')
 
   process.exit()
-}
-
-const map = (tx) => {
-  const res = {
-    positionId: null,
-    blockchain: tx[1],
-    hash: tx[2],
-    type: tx[3],
-    blockNumber: tx[4],
-    timeStamp: tx[5],
-    nonce: tx[6],
-    from: tx[7],
-    to: tx[8],
-    contractAddress: tx[9],
-    value: tx[10],
-    tokenName: tx[11],
-    tokenSymbol: tx[12],
-    tokenDecimal: tx[13],
-    gas: tx[14],
-    gasPrice: tx[15],
-    gasUsed: tx[16],
-    input: tx[17],
-    confirmations: tx[18],
-    isError: tx[19]
-  }
-  return res
 }
 
   ; (async () => {

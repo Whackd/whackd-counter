@@ -29,6 +29,32 @@ const prepareDb = (tx, blockchain, type) => {
   return res
 }
 
+const map = (tx) => {
+  const res = {
+    positionId: null,
+    blockchain: tx[1],
+    hash: tx[2],
+    type: tx[3],
+    blockNumber: tx[4],
+    timeStamp: tx[5],
+    nonce: tx[6],
+    from: tx[7],
+    to: tx[8],
+    contractAddress: tx[9],
+    value: tx[10],
+    tokenName: tx[11],
+    tokenSymbol: tx[12],
+    tokenDecimal: tx[13],
+    gas: tx[14],
+    gasPrice: tx[15],
+    gasUsed: tx[16],
+    input: tx[17],
+    confirmations: tx[18],
+    isError: tx[19]
+  }
+  return res
+}
+
 // Etherscan limits transactions reported to 10k so it blocksPerQuery must be lower than x transactions in block range. 
 
 let blocksPerQuery = 10000
@@ -36,7 +62,8 @@ let blocksPerQuery = 10000
 module.exports = {
 
   prepareDb,
-
+  map,
+  
   setBlocksPerQuery: (blocks) => {
     if (blocks >= 10) {
       blocksPerQuery = blocks
@@ -190,6 +217,14 @@ module.exports = {
             module.exports.setBlocksPerQuery(50000)
           }
         }
+
+        // dev airdrop tweaks 
+        if (address.toLowerCase() === '0x23D3808fEaEb966F9C6c5EF326E1dD37686E5972'.toLowerCase()) {
+          if (begin > 9036599) {
+            module.exports.setBlocksPerQuery(40000)
+          }
+        }
+
 
         if (sync === lastBlock) {
           console.log('process complete.')

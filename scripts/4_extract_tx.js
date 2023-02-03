@@ -41,12 +41,12 @@ const main = async () => {
   // the dev did all the aridrops but in two different methods. They are detected via the 
   // input data but there were some group airdrops performed later as well
   // this aims to select addresses from these secondary airderps
+  // TODO A useful function would be a syncLocation but filter out all transactions that arent of token
   const dev = '0x23D3808fEaEb966F9C6c5EF326E1dD37686E5972'
-  etherscan.setBlocksPerQuery(28400)
+  etherscan.setBlocksPerQuery(2000)
   if (!await fs.existsSync(__dirname + '/../data/' + dev + '_block.json')) {
-    await jsondb.writeBlockFile(dev, 10422709)
+    await jsondb.writeBlockFile(dev, 8114599) // 10422709
   }
-  // TODO set lastBlock to something after the airdrops here, its downloading all tx from 10422709
   await etherscan.syncLocation(dev, lastBlock)
 
   // the actual uniswap contract that is regularly in use. This has a lot of transactions
@@ -68,23 +68,23 @@ const main = async () => {
   const discover5 = '0xe66b31678d6c16e9ebf358268a790b763c133750'
   const discover6 = '0xe213012a73550BfCa9928d54f3609E4a3C1961b5' // apparently an old uni pool
 
-  const filter1 = await etherscan.tokenContractFilter(discover1, whackd, 0, lastBlock)
-  await addDb(filter1, miscFile)
+  // const filter1 = await etherscan.tokenContractFilter(discover1, whackd, 0, lastBlock)
+  // await addDb(filter1, miscFile)
 
-  const filter2 = await etherscan.tokenContractFilter(discover2, whackd, 0, lastBlock)
-  await addDb(filter2, miscFile)
+  // const filter2 = await etherscan.tokenContractFilter(discover2, whackd, 0, lastBlock)
+  // await addDb(filter2, miscFile)
 
-  const filter3 = await etherscan.tokenContractFilter(discover3, whackd, 0, lastBlock)
-  await addDb(filter3, miscFile)
+  // const filter3 = await etherscan.tokenContractFilter(discover3, whackd, 0, lastBlock)
+  // await addDb(filter3, miscFile)
 
-  const filter4 = await etherscan.tokenContractFilter(discover4, whackd, 0, lastBlock)
-  await addDb(filter4, miscFile)
+  // const filter4 = await etherscan.tokenContractFilter(discover4, whackd, 0, lastBlock)
+  // await addDb(filter4, miscFile)
 
-  const filter5 = await etherscan.tokenContractFilter(discover5, whackd, 0, lastBlock)
-  await addDb(filter5, miscFile)
+  // const filter5 = await etherscan.tokenContractFilter(discover5, whackd, 0, lastBlock)
+  // await addDb(filter5, miscFile)
 
-  const filter6 = await etherscan.tokenContractFilter(discover6, whackd, 0, lastBlock)
-  await addDb(filter6, miscFile)
+  // const filter6 = await etherscan.tokenContractFilter(discover6, whackd, 0, lastBlock)
+  // await addDb(filter6, miscFile)
 
   console.log('Process completed.')
 
