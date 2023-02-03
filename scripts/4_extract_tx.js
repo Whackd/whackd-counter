@@ -20,6 +20,7 @@ const main = async () => {
   // Extract all the transactions that are visible from etherscan's interface
   // Note Not all transactions are visible, particularly contract to contract interactions
   const whackd = '0xCF8335727B776d190f9D15a54E6B9B9348439eEE'
+  
   if (!await fs.existsSync(__dirname + '/../data/' + whackd + '_block.json')){
     await jsondb.writeBlockFile(whackd, 8943162)
   }
@@ -45,6 +46,7 @@ const main = async () => {
   if (!await fs.existsSync(__dirname + '/../data/' + dev + '_block.json')) {
     await jsondb.writeBlockFile(dev, 10422709)
   }
+  // TODO set lastBlock to something after the airdrops here, its downloading all tx from 10422709
   await etherscan.syncLocation(dev, lastBlock)
 
   // the actual uniswap contract that is regularly in use. This has a lot of transactions
@@ -85,13 +87,16 @@ const main = async () => {
   await addDb(filter6, miscFile)
 
   console.log('Process completed.')
-  
+
 }
 
 /*
   Add transactions to a misc transaction file
 */
 const addDb = async (transactions, miscFile) => {
+  if (!fs.existsSync(miscFile)) {
+    await fs.writeFileSync(miscFile, JSON.stringify([]))
+  }
   const _misc = await fs.readFileSync(miscFile)
   const misc = JSON.parse(_misc)
   const newRecords = []
