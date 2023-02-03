@@ -1,18 +1,23 @@
-const env = require('node-env-file')
-env(__dirname + '/../.env')
-const jsondb = require('../utils/jsondb.js')
-const decimals = require('../utils/decimals.js')
-const { bigD, weiToDisplay, displayToWei, d } = decimals
-const abi = require('../utils/abi.json')
-const InputDataDecoder = require('ethereum-input-data-decoder');
-const decoder = new InputDataDecoder(abi)
-const ethers = require('ethers')
-const provider = new ethers.providers.JsonRpcProvider(process.env.MAINNET_NODE, 1)
 const fs = require('fs')
 const perf = require('execution-time')()
+const ethers = require('ethers')
+const env = require('node-env-file')
+const InputDataDecoder = require('ethereum-input-data-decoder')
+
+env(__dirname + '/../.env')
 const { v4 } = require("uuid")
+const abi = require('../utils/abi.json')
+const jsondb = require('../utils/jsondb.js')
+const decimals = require('../utils/decimals.js')
+const { displayToWei, d } = decimals
+const decoder = new InputDataDecoder(abi)
+
+const provider = new ethers.providers.JsonRpcProvider(process.env.MAINNET_NODE, 1)
 
 /*
+
+  Purpose: Generate ETH and WHACKD balances for all known WHACKD holders
+
   build a database of known wallet addresses and then 
   cache the all addresses file.
   poll node for balances for all addresses

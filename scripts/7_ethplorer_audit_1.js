@@ -13,7 +13,7 @@ const fs = require('fs')
 const axios = require('axios')
 
 /* 
-  Compare ethplorer api results with our own, in order to find inconsistencies
+  Purpose: Compare ethplorer api results with our own data, in order to find inconsistencies
 
   this pulls the top 1000 holders from the ethplorer api and then comapres them 
   with the top holders that have been calculated. When the ethplorer reports a holder

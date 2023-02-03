@@ -12,10 +12,12 @@ const { bigD, weiToDisplay, displayToWei, d } = decimals
 const provider = new ethers.providers.JsonRpcProvider(process.env.MAINNET_NODE, 1)
 
 /* 
-    airdrop analytics. Try to locate airdrop addresses and determine what types of hodlers exist
-    This makes some basic assumptions about the value of the airdrops but later I discovered there 
-    was a separate bulk airdrop method which sent out airdrops with various balances, probably to
-    friends and such. 
+  Purpose: Work in progress, Analyze airdrop recipients
+
+  airdrop analytics. Try to locate airdrop addresses and determine what types of hodlers exist
+  This makes some basic assumptions about the value of the airdrops but later I discovered there 
+  was a separate bulk airdrop method which sent out airdrops with various balances, probably to
+  friends and such. 
 
 */
 

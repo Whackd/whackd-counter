@@ -3,6 +3,11 @@ env(__dirname + '/../.env')
 
 const ethers = require('ethers')
 
+
+/* 
+  Purpose: Create a new mnemonic and derived addresses for wallet using increased entrophy
+*/
+
 const run = async () => {
   console.log('\nHere is a new seed phrase:\n')
   const wallet = new ethers.Wallet.createRandom([{ extraEntropy: ethers.utils.randomBytes(16) }])
