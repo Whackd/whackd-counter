@@ -215,7 +215,7 @@ const run = async () => {
     const bal = d(r.balance, 18, 2)
     const perc = bigD(bal).divide(bigD(uV2Supply)).multiply(bigD('100'))
     const withdrawableEth = round(bigD(ethBal).multiply(perc).divide(bigD('100')).getValue(), 2)
-    console.log(r.address + ' ' + bal + ' UNI-V2 ' + round(perc.getValue(), 2) + '%, ' + withdrawableEth  + ' ETH ' )
+    console.log('  ' + r.address + ' ' + bal + ' UNI-V2 ' + round(perc.getValue(), 2) + '%, ' + withdrawableEth  + ' ETH ' )
   })
 }
 
