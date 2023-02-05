@@ -73,6 +73,8 @@ const filterNonSwaps = (txns) => {
   for (txn in txns) {
     let ignore = false
     const tx = txns[txn]
+    // KNOWN ISSUE: I found some more complex swaps leave you with a function call and will be filtered here
+    // See https://etherscan.io/tx/0x9cf01f404b2e4ceacac13eafb7aec0f48f8b85f36b2a97c3ce31a3bebea2fead
     if (tx.isContractCall || tx.isInternal || tx.univ2 || tx.function || !tx.amountWhackd) {
       ignore = true
     }

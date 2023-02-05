@@ -253,6 +253,46 @@ module.exports = {
         console.log(error)
       }
     }
+  },
 
+  eventLogsByAddressTopics: async (topic0, topic1, address) => {
+    try {
+      const url = 'https://api.etherscan.io/api?module=logs&action=getLogs' +
+        '&page=1' +
+        '&offset=0' +
+        '&topic0=' + topic0 +
+        '&topic1=' + topic1 +
+        '&address=' + address +
+        '&apikey=' + process.env.ETHERSCAN_API_KEY;
+      const result = await axios.get(url)
+      return result.data.result
+    } catch (error) {
+      if (error.isAxiosError) {
+        console.log(error.response.status, error.response.statusText)
+      } else {
+        console.log(error)
+      }
+    }
+  },
+
+  eventLogsByAddress3Topics: async (topic0, topic1, topic2, address) => {
+    try {
+      const url = 'https://api.etherscan.io/api?module=logs&action=getLogs' +
+        '&page=1' +
+        '&offset=0' +
+        '&topic0=' + topic0 +
+        '&topic1=' + topic1 +
+        '&topic2=' + topic2 +
+        '&address=' + address +
+        '&apikey=' + process.env.ETHERSCAN_API_KEY;
+      const result = await axios.get(url)
+      return result.data.result
+    } catch (error) {
+      if (error.isAxiosError) {
+        console.log(error.response.status, error.response.statusText)
+      } else {
+        console.log(error)
+      }
+    }
   }
 }
