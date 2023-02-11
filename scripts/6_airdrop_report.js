@@ -152,6 +152,7 @@ const balancesFilePath = __dirname + '/../data/0xCF8335727B776d190f9D15a54E6B9B9
       let dustyWalletAd1Total = bigD('0')
       let hotActiveAd1 = 0
       let hotActiveAd1Total = bigD('0')
+      let uninitedAirdrop1 = []
       firstAirdropRecipientsSet.forEach((r) => {
         const balance = findBal(r)
         if (typeof balance === 'undefined') {
@@ -163,6 +164,7 @@ const balancesFilePath = __dirname + '/../data/0xCF8335727B776d190f9D15a54E6B9B9
             // uninited airdrops are suspected derived wallets from a single or a few players
             uninitedAd1 += 1
             uninitedAd1Total = uninitedAd1Total.add(bigD(balance.balance))
+            uninitedAirdrop1.push(r)
           } else {
             if (Number(balance.eth) < 0.01) {
               // dusty wallet unlikely to claim
@@ -190,6 +192,7 @@ const balancesFilePath = __dirname + '/../data/0xCF8335727B776d190f9D15a54E6B9B9
       let dustyWalletAd2Total = bigD('0')
       let hotActiveAd2 = 0
       let hotActiveAd2Total = bigD('0')
+      let uninitedAirdrop2 = []
       secondAdRecipientsSet.forEach((r) => {
         const balance = findBal(r)
         if (typeof balance === 'undefined') {
@@ -201,6 +204,7 @@ const balancesFilePath = __dirname + '/../data/0xCF8335727B776d190f9D15a54E6B9B9
             // uninited airdrops are suspected derived wallets from a single or a few players
             uninitedAd2 += 1
             uninitedAd2Total = uninitedAd2Total.add(bigD(balance.balance))
+            uninitedAirdrop2.push(r)
           } else {
             if (Number(balance.eth) < 0.01) {
               // dusty wallet unlikely to claim
@@ -236,7 +240,27 @@ const balancesFilePath = __dirname + '/../data/0xCF8335727B776d190f9D15a54E6B9B9
       console.log('All dusty: ' + gtDustyCount + ' totalling: ' + round(gtDusty.getValue(), 0) + ' unspent WHACKD, likely to not get spent liberally')
       console.log('All active: ' + gtHotActiveCount + ' totalling: ' + round(gtHotActive.getValue(), 0) + ' unspent WHACKD, from legit addresses')
 
+      const transformer = (set) => {
+        const array = []
+        set.forEach((item) => {
+          array.push(item)
+        })
+        return array
+      }
 
+      const info = {
+        claimedCount: gtClaimedCount,
+        uninitedCount: gtUninitedCount,
+        dustyCount: gtDustyCount,
+        hotActiveCount: gtHotActiveCount,
+        firstRecipients: transformer(firstAirdropRecipientsSet),
+        uninitedAirdrop1: uninitedAirdrop1,
+        uninitedAirdrop2: uninitedAirdrop2,
+        secondRecipients: transformer(secondAdRecipientsSet)
+      }
+
+      await fs.writeFileSync(__dirname + '/../data/0xCF8335727B776d190f9D15a54E6B9B9348439eEE_uninited.json', JSON.stringify(info, null, 4))
+      
       console.log('\nProcess complete.')
     } catch (error) {
       console.log(error)

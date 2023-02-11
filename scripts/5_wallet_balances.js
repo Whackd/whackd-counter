@@ -88,7 +88,7 @@ const run = async () => {
       addAddress(tx.to)
       if (i % 1000 === 0) {
         if (typeof timer !== 'undefined') {
-          const allDuration = perf.stop(timer);
+          const allDuration = perf.stop(timer)
           console.log('Found: ' + allAddresses.length + ' from ' + i + ' of ' + txns.length + ' txns. timer: ' + allDuration.preciseWords)
         }
         timer = v4()
