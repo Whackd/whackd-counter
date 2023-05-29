@@ -14043,7 +14043,7 @@ No Eth, Has Whackd: 16451 ->
   0x3d989560f469808665c26c6510fec0893e00ba74 1        0.0000         45.0000
   0xe1ba15be79960e775e7c88e0738e0aae71835bb6 2        0.0000         27.0270
 
-  Active wallets holding Whackd but have no eth: 2413
+  Active wallets holding Whackd but have no eth: 2413 - 43,828,576.7815 WHACKD
   0xb7c3c9e7f9d8eb20b0f4db74728a6d4f6881eb37 78       0.0000    4091415.2350
   0x0f5d9f8819310b28bb30ed558a8cc941674ffb5e 4        0.0000    3480962.0292
   0x855e058ecd26d7aed8554fccb690048d836897a0 5        0.0000    1800000.0000
@@ -16458,7 +16458,7 @@ No Eth, Has Whackd: 16451 ->
   0x6c0844f2737bb5986e3c95e89ccc2928bac4702a 1207     0.0000          3.9405
   0x8b954af2d76fd776472ec7aab7aef71ec6a3d082 31       0.0000          2.4913
 
-Active Wallets with ETH and WHACKD: 8534
+Active Wallets with ETH and WHACKD: 8534 - 409,549,041.1318 WHACKD
   0x2d137d9ed7f0f7e7e9ce8b3f48cb9a468c195973 601      2.1224   17950512.0616
   0x1d0738b927dfcbfbd59a9f0944bbd1860d3b9248 2162     3.7304   13660000.0000
   0xb84c445c3dcf6a7d99f02a140937c1498ab11c48 532      0.1330   13571008.1493
