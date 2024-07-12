@@ -4,7 +4,7 @@ env(__dirname + '/.env')
 require("@nomicfoundation/hardhat-toolbox");
 require("@nomiclabs/hardhat-etherscan")
 
-const lastBlock = 16517665
+const lastBlock = 20108900 // june 17 2024 10:45 am
 
 module.exports = {
   solidity: {
